@@ -34,10 +34,6 @@ Provides:	dh-python3
 %prep
 %autosetup -n %{name}-%{version}.%{date_source} -p1
 
-# Change shebang in all relevant files in this directory and all subdirectories
-# See `man find` for how the `-exec command {} +` syntax works
-find -type f -exec sed -iE '1s=^#! */usr/bin/\(python\|env python\)[23]\?=#!%{__python3}=' {} +
-
 %build
 
 
