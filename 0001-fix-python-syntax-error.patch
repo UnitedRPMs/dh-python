@@ -1,0 +1,11 @@
+--- a/dhpython/_defaults.py
++++ b/dhpython/_defaults.py
+@@ -91,7 +91,7 @@
+ if __name__ == '__main__':
+     from sys import argv, stderr
+     if len(argv) != 3:
+-        print('invalid number of arguments', file=stderr)
++        sys.stderr.write('invalid number of arguments\n')
+         exit(1)
+     if argv[1] == 'default':
+         print('.'.join(str(i) for i in DEFAULT[argv[2]]))
