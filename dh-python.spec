@@ -4,18 +4,18 @@
 %global _debpy_rel	1
 
 %global _py3def_name 	dh-python
-%global _py3def_ver	3.20190308
+%global _py3def_ver	3.7.3
 
 Name:           dh-python
-Version:        3.7.3
+Version:        4.20190722
 Release:        1%{?dist}
 Summary:        debhelper add-on to to handle python 3 files after build
 
 BuildArch:      noarch
 License:        GPLv2+
 URL:            http://packages.debian.org/unstable/dh-python
-Source0:        https://deb.debian.org/debian/pool/main/p/%{_debpy_name}/%{_debpy_name}_%{_debpy_ver}-%{_debpy_rel}.tar.gz
-Source1:	http://debian.backend.mirrors.debian.org/debian/pool/main/d/%{_py3def_name}/%{_py3def_name}_%{_py3def_ver}.tar.xz
+Source0:        https://cdn-aws.deb.debian.org/debian/pool/main/p/python3-defaults/python3-defaults_%{_py3def_ver}-%{_debpy_rel}.tar.gz
+Source1:	http://debian.backend.mirrors.debian.org/debian/pool/main/d/dh-python/dh-python_%{version}.tar.xz
 Patch:		py3versions.patch
 
 BuildRequires:  python3-docutils
@@ -24,8 +24,7 @@ BuildRequires:  dpkg-dev
 BuildRequires:	debhelper
 BuildRequires:	python3-rpm-macros
 
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-Provides:	dh-python3 
+Provides:	dh-python3 = %{version}
 
 %description
  * pybuild - invokes various build systems for requested Python versions in
@@ -45,7 +44,7 @@ Provides:	dh-python3
 
 make
 
-pushd %{_py3def_name}-%{_py3def_ver}
+pushd dh-python-%{version}
 make
 popd
 
@@ -64,7 +63,7 @@ make DESTDIR="%{buildroot}/" PREFIX=/usr install
   mkdir -p %{buildroot}/%{_datadir}/licenses/%{name}/
   install -D -m 644 debian/copyright %{buildroot}/%{_datadir}/licenses/%{name}/
 
-  pushd %{_py3def_name}-%{_py3def_ver}
+  pushd dh-python-%{version}
   make DESTDIR="%{buildroot}/" PREFIX=/usr install
 
   ln -s -f -r %{_datadir}/dh-python/dh_pypy %{buildroot}/usr/bin/dh_pypy
