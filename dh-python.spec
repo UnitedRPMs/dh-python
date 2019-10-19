@@ -4,10 +4,10 @@
 %global _debpy_rel	1
 
 %global _py3def_name 	dh-python
-%global _py3def_ver	3.7.3
+%global _py3def_ver	3.7.5
 
 Name:           dh-python
-Version:        4.20190722
+Version:        4.20191017
 Release:        1%{?dist}
 Summary:        debhelper add-on to to handle python 3 files after build
 
@@ -100,6 +100,9 @@ make DESTDIR="%{buildroot}/" PREFIX=/usr install
 %{_datadir}/perl5/vendor_perl/Debian/Debhelper/Sequence/python3.pm
 
 %changelog
+
+* Fri Oct 18 2019 David Va <davidva AT tuta DOT io> 4.20191017-1
+- Updated to 4.20191017
 
 * Tue Apr 16 2019 David Va <davidva AT tuta DOT io> 3.7.3-1
 - Updated to 3.7.3-1
