@@ -38,7 +38,7 @@ Provides:	dh-python3 = %{version}
 
 
 %prep
-%autosetup -n python3-defaults -p1 -a 1
+%autosetup -n python3-defaults-%{_py3def_ver} -p1 -a 1
 
 %build
 
